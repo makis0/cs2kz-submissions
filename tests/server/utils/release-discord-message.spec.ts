@@ -46,9 +46,11 @@ describe('colorizeTier', () => {
     ['very-easy', '\u001b[2;32mT1\u001b[0m'],
     ['easy', '\u001b[2;32mT2\u001b[0m'],
     ['medium', '\u001b[2;34mT3\u001b[0m'],
-    ['advanced', '\u001b[2;33mT4\u001b[0m'],
+    ['advanced', '\u001b[2;34mT4\u001b[0m'],
     ['hard', '\u001b[2;31mT5\u001b[0m'],
-    ['impossible', '\u001b[2;31mT10\u001b[0m'],
+    ['very-hard', '\u001b[2;31mT6\u001b[0m'],
+    ['extreme', '\u001b[2;35mT7\u001b[0m'],
+    ['impossible', '\u001b[2;35mT10\u001b[0m'],
   ] as const)('renders %s as %j', (tier, expected) => {
     expect(colorizeTier(tier)).toBe(expected)
   })
@@ -118,7 +120,7 @@ describe('toReleaseDiscordMessage', () => {
 
     const message = toReleaseDiscordMessage(contents([map]), 'csgo')
     expect(message.startsWith('@CS:GO - Server Operator\n')).toBe(true)
-    expect(message).toContain('kz_csgo (\u001b[2;33mT4\u001b[0m):42')
+    expect(message).toContain('kz_csgo (\u001b[2;34mT4\u001b[0m):42')
   })
 
   it('opens with a pinging role mention when a role id is given', () => {

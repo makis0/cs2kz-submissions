@@ -10,12 +10,13 @@ const ESC = '\u001b'
 const RESET = `${ESC}[0m`
 
 /** ANSI colour per tier number, as Discord's `ansi` code block renders it:
- *  green for the easy end, blue for T3, yellow for T4, red from T5 up. */
+ *  green for T1–T2, blue for T3–T4, red for T5–T6, and purple (Discord's
+ *  pink/magenta, code 35) for T7–T10. */
 function tierColorCode(tierNumber: number): string {
   if (tierNumber <= 2) return '2;32'
-  if (tierNumber === 3) return '2;34'
-  if (tierNumber === 4) return '2;33'
-  return '2;31'
+  if (tierNumber <= 4) return '2;34'
+  if (tierNumber <= 6) return '2;31'
+  return '2;35'
 }
 
 /** `T5` wrapped in its colour escape, e.g. `\u001b[2;31mT5\u001b[0m`. */
